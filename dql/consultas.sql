@@ -1,4 +1,20 @@
 -- Consultar los productos con stock por debajo del mínimo.
+select 
+    s.nombre_sede,
+    p.id_producto,
+    p.nombre_producto,
+    p.categoria_producto,
+    i.stock_actual,
+    i.stock_minimo,
+    (i.stock_minimo -i.stock_actual) as unidades_faltantes
+
+from inventario_sede i
+inner join productos p
+    on i.id_producto = p.id_producto
+inner join sedes s
+    on i.id_sede = s.id_sede
+where i-stock_actual < i.stock_minimo
+order by i.stock_actual asc;
 
 
 -- Consultar los pedidos realizados entre dos fechas (BETWEEN).
