@@ -126,6 +126,45 @@ having count(p.id_pedido) =
 
 
 -- Consultar pedidos y sus totales agrupados por sede.
+select
+    s.id_sede,
+    s.nombre_sede,
+    count(
+        case
+            when p.estado_pedido <> 'cancelado'
+            then p.id_pedido
+        end
+    ) as cantidad_pedidos,
+
+    coalesce(
+        sum(
+            case
+                when p.estado_pedido <> 'cancelado'
+                then p.total_sin_iva
+                else 0
+            end
+        ),
+        0.00
+    ) as total_ventas_sin_iva,
+
+    coalesce(
+        sum(
+            case
+                when p.estado_pedido <> 'cancelado'
+                then p.total_con_iva
+                else 0
+            end
+        ),
+        0.00
+    ) as total_ventas_con_iva
+
+from sedes s
+left join pedidos p
+    on s.id_sede = p.id_sede
+group by
+    s.id_sede,
+    s.nombre_sede
+order by total_ventas_con_iva desc;
 
 
 
