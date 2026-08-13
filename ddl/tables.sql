@@ -69,13 +69,20 @@ create table detalle_pedido(
     foreign key (id_producto) references productos(id_productos)
 );
 
+
 create table auditoria_precios(
+
     id_auditoria int aoto_increment primary key,
+    
     id_producto int not null,
+    
     precio_anterior decimal(10,2) not null,
+    
     precio_nuevo decimal(10,2) not null,
+    
     fecha_cambio datetime not null default current_timestamp,
 
     foreign key (id_producto) references productos(id_productos)
+
 );
 
