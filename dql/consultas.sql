@@ -18,7 +18,18 @@ order by i.stock_actual asc;
 
 
 -- Consultar los pedidos realizados entre dos fechas (BETWEEN).
-
+select 
+    p.id_pedido,
+    p.fecha_pedido,
+    p.id_cliente,
+    p.id_sede,
+    p.total_sin_iva,
+    p.total_con_iva,
+    p.estado_pedido
+from pedidos p
+where date (p.fecha_pedido)
+    between '2026-01-01' and '2026-12-31'
+order by p.fecha_pedido asc;
 
 -- Listar los productos más vendidos (con JOIN y GROUP BY).
 
