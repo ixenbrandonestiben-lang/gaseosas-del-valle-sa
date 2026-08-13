@@ -26,3 +26,38 @@ select
     s.id_sede,
     s.nombre_sede,
     s.ubicacion;
+
+create or replace view vista_productos_bajo_stock as 
+
+select 
+    i.id_inventario,
+    s.id_sede,
+    s.nombre_sede,
+
+    p.id_producto,
+    p.nombre_producto,
+    p.categoria_producto,
+
+    i.stock_actual,
+    i.stock_minimo,
+
+    case
+        when i.stock_actual = 0
+            then 'stock bajo'
+
+        when i.stock_actual <= i.stock_minimo
+            then 'stock bajo'
+
+        else 'stock normal'
+    end as estado stock,
+
+    i.fecha_actualizacion
+from inventario_sede i
+
+inner join sedes s
+    on i.id_sede = s.id_sede
+
+inner join productos p
+    on i.id_producto = p.id_producto
+
+where i.stock_actual <= i.stock_minimo;
