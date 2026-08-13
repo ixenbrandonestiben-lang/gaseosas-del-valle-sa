@@ -69,6 +69,17 @@ order by cantidad_pedidos desc;
 
 
 -- Buscar clientes por nombre parcial usando LIKE.
+select
+    id_cliente,
+    nombre_completo_cliente,
+    identificacion_cliente,
+    direccion_cliente,
+    telefono_cliente,
+    correo_electronico_cliente,
+    estado_cliente
+from clientes
+where nombre_completo_cliente like '%Carlos%'
+order by nombre_completo_cliente asc;
 
 
 -- Consultar productos de ciertas categorías usando IN.
