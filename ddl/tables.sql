@@ -20,3 +20,12 @@ create table productos(
     volumen_producto_ml decimal(10,2) not null,
     estado_producto varchar(20) not null
 );
+
+create table sedes(
+    id_sede int primary key auto_increment,
+    nombre_sede varchar(100) not null,
+    ubicacion varchar(100) not null,
+    capacidad_almacenamiento int not null check (capacidad_almacenamiento > 0),
+    encargado_sede varchar(100) not null,
+    estado_sede enum('Activa', 'Inactiva') not null default 'Activa'
+);
