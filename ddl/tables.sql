@@ -37,5 +37,22 @@ create table inventario_sede(
     stock_actual int not null check (stock_actual >= 0),
     stock_minimo int not null check (stock_minimo >= 0),
     fecha_actualizacion timestamp default current_timestamp on update current_timestamp
+
+    foreign key (id_sede) references sedes(id_sede),
+    foreign key (id_productos) references productos(id_productos),
+    unique key uq_sede_producto (id_sede, id_productos)
 );
 
+create table pedidos (
+    id_pedido int auto_increment primary key,
+    fecha_pedido timestamp default current_timestamp,
+    id_cliente int not null,
+    id_sede int not null,
+    total_sin_iva decimal(10,2) not null,
+    total_con_iva decimal(10,2) not null,
+    estado_pedido enum('Pendiente', 'Procesado', 'Entregado', 'Cancelado') not null default 'Pendiente',
+
+    foreign key (id_cliente) references clientes(id_cliente),
+    foreign key (id_sede) references sedes(id_sede)
+
+);
