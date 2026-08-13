@@ -1,3 +1,29 @@
+-- Ver funciones
+SHOW FUNCTION STATUS
+WHERE Db = 'gaseosas_del_valle';
+
+
+-- Ver triggers
+SHOW TRIGGERS
+FROM gaseosas_del_valle;
+
+
+-- Ver vistas
+SHOW FULL TABLES
+FROM gaseosas_del_valle
+WHERE TABLE_TYPE = 'VIEW';
+
+
+-- Ver eventos
+SHOW EVENTS
+FROM gaseosas_del_valle;
+
+
+-- Ver estructura del log de stock
+DESCRIBE log_stock_critico;
+
+
+
 -- ============================================================
 -- 6. VERIFICACIÓN DE FUNCIONES
 -- ============================================================
