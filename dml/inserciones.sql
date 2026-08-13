@@ -88,3 +88,63 @@ VALUES
  'Luis Hernández',
  'activo');
 
+
+INSERT INTO clientes
+(id_cliente, nombre_completo_cliente, identificacion_cliente,
+ direccion_cliente, telefono_cliente, correo_electronico_cliente,
+ estado_cliente)
+VALUES
+(1,'Carlos Pérez López','1000000000','Avenida 1, zona 6, Ciudad de Guatemala','51000000','cliente1@ejemplo.com','activo'),
+(2,'María Gómez Morales','1000000001','Avenida 2, zona 13, Ciudad de Guatemala','51000001','cliente2@ejemplo.com','activo'),
+(3,'José Hernández García','1000000002','Avenida 3, zona 21, Ciudad de Guatemala','51000002','cliente3@ejemplo.com','activo'),
+(4,'Ana Ramírez Castillo','1000000003','Avenida 4, zona 6, Ciudad de Guatemala','51000003','cliente4@ejemplo.com','activo'),
+(5,'Luis Mendoza López','1000000004','Avenida 5, zona 13, Ciudad de Guatemala','51000004','cliente5@ejemplo.com','activo'),
+(6,'Sofía Cifuentes Pérez','1000000005','Avenida 6, zona 21, Ciudad de Guatemala','51000005','cliente6@ejemplo.com','activo'),
+(7,'Miguel López Morales','1000000006','Avenida 7, zona 6, Ciudad de Guatemala','51000006','cliente7@ejemplo.com','activo'),
+(8,'Daniel García Hernández','1000000007','Avenida 8, zona 13, Ciudad de Guatemala','51000007','cliente8@ejemplo.com','activo'),
+(9,'Andrea Chávez Díaz','1000000008','Avenida 9, zona 21, Ciudad de Guatemala','51000008','cliente9@ejemplo.com','activo'),
+(10,'Jorge Morales Rivera','1000000009','Avenida 10, zona 6, Ciudad de Guatemala','51000009','cliente10@ejemplo.com','activo'),
+
+(11,'Paola Vásquez Pérez','1000000010','Avenida 1, zona 13, Ciudad de Guatemala','51000010','cliente11@ejemplo.com','activo'),
+(12,'Edwin Castillo Gómez','1000000011','Avenida 2, zona 21, Ciudad de Guatemala','51000011','cliente12@ejemplo.com','activo'),
+(13,'Karla Lemus García','1000000012','Avenida 3, zona 6, Ciudad de Guatemala','51000012','cliente13@ejemplo.com','activo'),
+(14,'Kevin Estrada López','1000000013','Avenida 4, zona 13, Ciudad de Guatemala','51000013','cliente14@ejemplo.com','activo'),
+(15,'Claudia Marroquín Pérez','1000000014','Avenida 5, zona 21, Ciudad de Guatemala','51000014','cliente15@ejemplo.com','activo'),
+(16,'Ricardo Santos Morales','1000000015','Avenida 6, zona 6, Ciudad de Guatemala','51000015','cliente16@ejemplo.com','activo'),
+(17,'Gabriela Fuentes López','1000000016','Avenida 7, zona 13, Ciudad de Guatemala','51000016','cliente17@ejemplo.com','activo'),
+(18,'Fernando Méndez García','1000000017','Avenida 8, zona 21, Ciudad de Guatemala','51000017','cliente18@ejemplo.com','activo'),
+(19,'Alejandra Pineda Castillo','1000000018','Avenida 9, zona 6, Ciudad de Guatemala','51000018','cliente19@ejemplo.com','activo'),
+(20,'Óscar Rodas Hernández','1000000019','Avenida 10, zona 13, Ciudad de Guatemala','51000019','cliente20@ejemplo.com','activo'),
+
+(21,'Diego Orellana Pérez','1000000020','Avenida 1, zona 21, Ciudad de Guatemala','51000020','cliente21@ejemplo.com','activo'),
+(22,'Valeria Chinchilla López','1000000021','Avenida 2, zona 6, Ciudad de Guatemala','51000021','cliente22@ejemplo.com','activo'),
+(23,'Juan Cabrera Morales','1000000022','Avenida 3, zona 13, Ciudad de Guatemala','51000022','cliente23@ejemplo.com','activo'),
+(24,'Lucía González García','1000000023','Avenida 4, zona 21, Ciudad de Guatemala','51000023','cliente24@ejemplo.com','activo'),
+(25,'Marco Alvarado Pérez','1000000024','Avenida 5, zona 6, Ciudad de Guatemala','51000024','cliente25@ejemplo.com','activo'),
+(26,'Diana Barrios López','1000000025','Avenida 6, zona 13, Ciudad de Guatemala','51000025','cliente26@ejemplo.com','activo'),
+(27,'Cristian Maldonado Rivera','1000000026','Avenida 7, zona 21, Ciudad de Guatemala','51000026','cliente27@ejemplo.com','activo'),
+(28,'Mónica Escobar García','1000000027','Avenida 8, zona 6, Ciudad de Guatemala','51000027','cliente28@ejemplo.com','activo'),
+(29,'Héctor Reyes Morales','1000000028','Avenida 9, zona 13, Ciudad de Guatemala','51000028','cliente29@ejemplo.com','activo'),
+(30,'Natalia Duarte Pérez','1000000029','Avenida 10, zona 21, Ciudad de Guatemala','51000029','cliente30@ejemplo.com','activo'),
+
+(31,'Esteban Velásquez López','1000000030','Avenida 1, zona 6, Ciudad de Guatemala','51000030','cliente31@ejemplo.com','activo'),
+(32,'Patricia Quintanilla García','1000000031','Avenida 2, zona 13, Ciudad de Guatemala','51000031','cliente32@ejemplo.com','activo'),
+(33,'Víctor Arriola Pérez','1000000032','Avenida 3, zona 21, Ciudad de Guatemala','51000032','cliente33@ejemplo.com','activo'),
+(34,'Camila Salazar López','1000000033','Avenida 4, zona 6, Ciudad de Guatemala','51000033','cliente34@ejemplo.com','activo'),
+(35,'Byron Aguilar Morales','1000000034','Avenida 5, zona 13, Ciudad de Guatemala','51000034','cliente35@ejemplo.com','activo'),
+(36,'Isabel Recinos García','1000000035','Avenida 6, zona 21, Ciudad de Guatemala','51000035','cliente36@ejemplo.com','activo'),
+(37,'Álvaro Solórzano Pérez','1000000036','Avenida 7, zona 6, Ciudad de Guatemala','51000036','cliente37@ejemplo.com','activo'),
+(38,'Rosa Mazariegos López','1000000037','Avenida 8, zona 13, Ciudad de Guatemala','51000037','cliente38@ejemplo.com','activo'),
+(39,'Julio Cardona Pérez','1000000038','Avenida 9, zona 21, Ciudad de Guatemala','51000038','cliente39@ejemplo.com','activo'),
+(40,'Melissa Tobar García','1000000039','Avenida 10, zona 6, Ciudad de Guatemala','51000039','cliente40@ejemplo.com','activo'),
+
+(41,'Sergio Samayoa López','1000000040','Avenida 1, zona 13, Ciudad de Guatemala','51000040','cliente41@ejemplo.com','activo'),
+(42,'Wendy Barrera Morales','1000000041','Avenida 2, zona 21, Ciudad de Guatemala','51000041','cliente42@ejemplo.com','activo'),
+(43,'Manuel Ixcoy Pérez','1000000042','Avenida 3, zona 6, Ciudad de Guatemala','51000042','cliente43@ejemplo.com','activo'),
+(44,'Giselle Coy García','1000000043','Avenida 4, zona 13, Ciudad de Guatemala','51000043','cliente44@ejemplo.com','activo'),
+(45,'Francisco Ajú López','1000000044','Avenida 5, zona 21, Ciudad de Guatemala','51000044','cliente45@ejemplo.com','activo'),
+(46,'Regina Tzul Pérez','1000000045','Avenida 6, zona 6, Ciudad de Guatemala','51000045','cliente46@ejemplo.com','activo'),
+(47,'Roberto Choc Morales','1000000046','Avenida 7, zona 13, Ciudad de Guatemala','51000046','cliente47@ejemplo.com','activo'),
+(48,'Elena Canil García','1000000047','Avenida 8, zona 21, Ciudad de Guatemala','51000047','cliente48@ejemplo.com','activo'),
+(49,'Andrés Chub López','1000000048','Avenida 9, zona 6, Ciudad de Guatemala','51000048','cliente49@ejemplo.com','activo'),
+(50,'Beatriz Pop Pérez','1000000049','Avenida 10, zona 13, Ciudad de Guatemala','51000049','cliente50@ejemplo.com','activo');
