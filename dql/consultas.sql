@@ -83,6 +83,22 @@ order by nombre_completo_cliente asc;
 
 
 -- Consultar productos de ciertas categorías usando IN.
+select
+    id_producto,
+    nombre_producto,
+    categoria_producto,
+    precio_producto,
+    volumen_ml,
+    estado_producto
+from productos
+where categoria_producto in
+(
+    'Cola',
+    'Cola Zero',
+    'Naranja',
+    'Agua'
+)
+order by categoria_producto, nombre_producto;
 
 
 -- Mostrar el cliente con mayor número de pedidos (subconsulta).
