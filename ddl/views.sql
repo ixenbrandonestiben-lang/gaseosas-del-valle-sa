@@ -4,6 +4,8 @@ drop view if exists vista_resumen_pedidos_por_sede;
 drop view if exists vista_productos_bajo_stock;
 drop view if exists vista_clientes_activos;
 
+-- ***************************************
+
 create or replace view vista_resumen_pedidos_por_sede as 
 
 select 
@@ -26,6 +28,9 @@ select
     s.id_sede,
     s.nombre_sede,
     s.ubicacion;
+
+
+-- ********************************************************
 
 create or replace view vista_productos_bajo_stock as 
 
@@ -61,3 +66,24 @@ inner join productos p
     on i.id_producto = p.id_producto
 
 where i.stock_actual <= i.stock_minimo;
+
+-- *********************************************
+
+create or replace view vista_cliente_activos as
+
+select distinct
+
+    c.id_cliente,
+    c.nombre_completo_cliente,
+    c.identificacion_cliente,
+    c.direccion_cliente,
+    c.telefono_cliente,
+    c.correo_electronico_cliente,
+    c.estado_cliente
+
+from clientes c
+
+inner join pedidos p
+    on c.id_cliente = p.id_cliente
+
+where c.estado_cliente = 'activo';
