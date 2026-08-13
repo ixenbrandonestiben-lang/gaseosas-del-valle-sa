@@ -1,0 +1,28 @@
+use gaseosas_del_valle;
+
+drop view if exists vista_resumen_pedidos_por_sede;
+drop view if exists vista_productos_bajo_stock;
+drop view if exists vista_clientes_activos;
+
+create or replace view vista_resumen_pedidos_por_sede as 
+
+select 
+    s.id_sede,
+    s.nombre_sede,
+    s.ubicacion,
+
+    count(p.id_pedido) as total_pedidos,
+
+    coalesce(
+            sum(p.total_con_iva), 0.00
+    ) as ventas_acumuladas
+
+    from sedes as s
+
+    left join pedidos p
+        on s.id_sede = p.id_sede
+
+    group by 
+    s.id_sede,
+    s.nombre_sede,
+    s.ubicacion;
