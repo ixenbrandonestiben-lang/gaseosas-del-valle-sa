@@ -56,3 +56,15 @@ create table pedidos (
     foreign key (id_sede) references sedes(id_sede)
 
 );
+
+create table detalle_pedido(
+    id_detalle_pedido int auto_increment primary key,
+    id_pedido int not null,
+    id_producto int not null,
+    cantidad_producto int not null check (cantidad > 0),
+    precio_unitario decimal(10,2) not null,
+    subtotal decimal(10,2) not null,
+
+    foreign key (id_pedido) references pedidos(id_pedido),
+    foreign key (id_producto) references productos(id_productos)
+);
