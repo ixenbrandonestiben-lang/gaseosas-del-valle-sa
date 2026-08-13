@@ -33,6 +33,24 @@ order by p.fecha_pedido asc;
 
 -- Listar los productos más vendidos (con JOIN y GROUP BY).
 
+select
+     p.id_producto,
+    p.nombre_producto,
+    p.categoria_producto,
+    sum(dp.cantidad_producto) as cantidad_total_vendida,
+    sum(dp.subtotal) as ventas_generadas
+
+from detalle_pedido dp
+inner join productos p
+    on dp.id_producto = p.id_producto
+inner join pedidos pe
+    on dp.id_pedido = pe-id_pedido
+where pe.estado_pedido <> 'cancelado'
+group by 
+    p.id_producto,
+    p.nombre_producto,
+    p.categoria_producto
+order by cantidad_total_vendida desc;
 
 -- Mostrar clientes y la cantidad de pedidos realizados.
 
