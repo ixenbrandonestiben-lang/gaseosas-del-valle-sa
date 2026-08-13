@@ -102,6 +102,27 @@ order by categoria_producto, nombre_producto;
 
 
 -- Mostrar el cliente con mayor número de pedidos (subconsulta).
+select
+    c.id_cliente,
+    c.nombre_completo_cliente,
+    count(p.id_pedido) as cantidad_pedidos
+from clientes c
+inner join pedidos p
+    on c.id_cliente = p.id_cliente
+group by
+    c.id_cliente,
+    c.nombre_completo_cliente
+having count(p.id_pedido) =
+(
+    select max(cantidad_pedidos)
+    from
+    (
+        select
+            count(id_pedido) as cantidad_pedidos
+        from pedidos
+        group by id_cliente
+    ) as resumen_clientes
+);
 
 
 -- Consultar pedidos y sus totales agrupados por sede.
