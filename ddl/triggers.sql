@@ -68,3 +68,30 @@ begin
 END //
 
 DELIMITER ;
+CREATE TRIGGER tr_auditar_cambio_precio
+AFTER UPDATE ON productos
+FOR EACH ROW
+BEGIN
+
+    IF OLD.precio_producto <> NEW.precio_producto THEN
+
+        INSERT INTO auditoria_precios (
+            id_producto,
+            precio_anterior,
+            precio_nuevo,
+            fecha_cambio,
+            usuario_cambio
+        )
+        VALUES (
+            NEW.id_producto,
+            OLD.precio_producto,
+            NEW.precio_producto,
+            CURRENT_TIMESTAMP,
+            COALESCE(NEW.usuario_registro, 'ADMIN')
+        );
+
+    END IF;
+
+END //
+
+DELIMITER ;
