@@ -29,3 +29,13 @@ create table sedes(
     encargado_sede varchar(100) not null,
     estado_sede enum('Activa', 'Inactiva') not null default 'Activa'
 );
+
+create table inventario_sede(
+    id_inventario int auto_increment primary key,
+    id_sede int not null,
+    id_productos int not null,
+    stock_actual int not null check (stock_actual >= 0),
+    stock_minimo int not null check (stock_minimo >= 0),
+    fecha_actualizacion timestamp default current_timestamp on update current_timestamp
+);
+
