@@ -45,3 +45,55 @@ begin
 end //
 
 delimiter ;
+
+
+DELIMITER //
+
+CREATE FUNCTION fn_validar_stock(
+    p_id_sede INT,
+    p_id_producto INT,
+    p_cantidad INT
+)
+RETURNS VARCHAR(100)
+DETERMINISTIC
+READS SQL DATA
+BEGIN
+
+    DECLARE v_stock_actual INT DEFAULT NULL;
+
+    -- Validar cantidad solicitada
+    IF p_cantidad <= 0 THEN
+        RETURN 'CANTIDAD INVALIDA';
+    END IF;
+
+    -- Buscar stock de la sede y producto
+    SELECT stock_actual
+    INTO v_stock_actual
+    FROM inventario_sede
+    WHERE id_sede = p_id_sede
+      AND id_producto = p_id_producto
+    LIMIT 1;
+
+    -- Producto no registrado en esa sede
+    IF v_stock_actual IS NULL THEN
+        RETURN 'PRODUCTO NO REGISTRADO EN LA SEDE';
+    END IF;
+
+    -- Validar existencia
+    IF v_stock_actual >= p_cantidad THEN
+        RETURN CONCAT(
+            'STOCK SUFICIENTE - DISPONIBLE: ',
+            v_stock_actual
+        );
+    ELSE
+        RETURN CONCAT(
+            'STOCK INSUFICIENTE - DISPONIBLE: ',
+            v_stock_actual,
+            ' - SOLICITADO: ',
+            p_cantidad
+        );
+    END IF;
+
+END //
+
+DELIMITER ;
