@@ -53,6 +53,19 @@ group by
 order by cantidad_total_vendida desc;
 
 -- Mostrar clientes y la cantidad de pedidos realizados.
+select
+    c.id_cliente,
+    c.nombre_completo_cliente,
+    c.identificacion_cliente,
+    count(p.id_pedido) as cantidad_pedidos
+from clientes c
+left join pedidos p
+    on c.id_cliente = p.id_cliente
+group by
+    c.id_cliente,
+    c.nombre_completo_cliente,
+    c.identificacion_cliente
+order by cantidad_pedidos desc;
 
 
 -- Buscar clientes por nombre parcial usando LIKE.
