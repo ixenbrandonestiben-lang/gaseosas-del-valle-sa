@@ -12,3 +12,11 @@ create table clientes(
     estado_cliente varchar(20) not null
 );
 
+create table productos(
+    id_productos int primary key auto_increment,
+    nombre_producto varchar(100) not null,
+    categoria_producto varchar(50) not null,
+    precio_producto decimal(10,2) not null,
+    volumen_producto_ml decimal(10,2) not null,
+    estado_producto varchar(20) not null
+);
