@@ -1,3 +1,29 @@
+-- Consultar los productos con stock por debajo del mínimo.
+
+
+-- Consultar los pedidos realizados entre dos fechas (BETWEEN).
+
+
+-- Listar los productos más vendidos (con JOIN y GROUP BY).
+
+
+-- Mostrar clientes y la cantidad de pedidos realizados.
+
+
+-- Buscar clientes por nombre parcial usando LIKE.
+
+
+-- Consultar productos de ciertas categorías usando IN.
+
+
+-- Mostrar el cliente con mayor número de pedidos (subconsulta).
+
+
+-- Consultar pedidos y sus totales agrupados por sede.
+
+
+
+
 -- Ver funciones
 SHOW FUNCTION STATUS
 WHERE Db = 'gaseosas_del_valle';
