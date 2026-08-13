@@ -64,3 +64,27 @@ VALUES
 (48,'Frutal Fresa','Frutal',9.00,500,'activo','ADMIN'),
 (49,'Frutal Tropical','Frutal',9.00,500,'activo','ADMIN'),
 (50,'Frutal Cítrico','Frutal',9.00,500,'activo','ADMIN');
+
+
+INSERT INTO sedes
+(id_sede, nombre_sede, ubicacion, capacidad_almacenamiento,
+ encargado_sede, estado_sede)
+VALUES
+(1,'Sede Zona 6',
+ 'Calzada José Milla Vidaurre, zona 6, Ciudad de Guatemala',
+ 5000,
+ 'Carlos Pérez',
+ 'activo'),
+
+(2,'Sede Zona 13',
+ 'Avenida Las Américas, zona 13, Ciudad de Guatemala',
+ 6000,
+ 'María Gómez',
+ 'activo'),
+
+(3,'Sede Zona 21',
+ 'Avenida Petapa, zona 21, Ciudad de Guatemala',
+ 4500,
+ 'Luis Hernández',
+ 'activo');
+
