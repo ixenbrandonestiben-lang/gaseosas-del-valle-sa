@@ -1,31 +1,58 @@
+Gaseosas del Valle S.A.
 
-# Gaseosas del Valle S.A.
+## Descripción
 
+Sistema de base de datos para la gestión operativa de una empresa distribuidora de bebidas gaseosas. El proyecto está orientado a modelar, documentar y validar la información relacionada con clientes, productos, sedes, inventario, pedidos, auditoría de precios y consultas analíticas.
 
-Proyecto de análisis y diseño de base de datos para una empresa distribuidora de bebidas gaseosas.
+## Objetivos
 
+- Diseñar una base de datos relacional en MySQL para la gestión empresarial.
+- Centralizar la información de clientes, productos, sedes e inventarios.
+- Registrar y controlar pedidos y detalles de venta.
+- Validar el stock disponible antes de procesar ventas.
+- Mantener trazabilidad de cambios de precios mediante auditoría.
+- Generar consultas y reportes para análisis operativo.
+- Documentar la solución con estructura clara para MySQL Workbench y scripts SQL.
 
-## Objetivo
-
-
-Implementar y documentar una base de datos relacional en MySQL para gestionar clientes, productos, sedes, inventario, pedidos y auditoría de cambios de precios, con soporte de validaciones, consultas y reportes en MySQL Workbench.
-
-
-## Documentación relevante
-
-
-- Requerimientos básicos: `analisis/requerimientos.md`
-- Evidencias del trabajo: `evidencias/evidencias.md`
-
-
-## Stack principal
-
+## Tecnologías usadas
 
 - MySQL
 - MySQL Workbench
-- Scripts SQL para DDL, DML y DQL
+- Visual Studio Code
+- GitHub
 
+## Estructura del proyecto
 
-## Autor
+```text
+gaseosas-del-valle-sa/
+├── analisis/
+│   ├── requerimientos.md
+│   └── imagenes/
+├── ddl/
+│   ├── tables.sql
+│   ├── funciones.sql
+│   ├── triggers.sql
+│   ├── views.sql
+│   └── eventos.sql
+├── dml/
+│   └── inserciones.sql
+├── dql/
+│   └── consultas.sql
+├── evidencias/
+│   ├── evidencias.md
+│   ├── imagenes-consultas-basicas/
+│   ├── imagenes-funciones/
+│   ├── imagenes-vistas/
+│   └── imagenes-eventos-triggers/
+├── README.md
+└── .gitignore
+```
 
- **Brandon Estiben Ixen Teleguario**
+## Alcance general
+
+Este proyecto incluye la creación de la base de datos, la definición de tablas, validaciones de integridad, funciones almacenadas, triggers, vistas, inserción de datos de prueba y consultas para análisis y validación del funcionamiento del sistema.
+
+## Documentación relacionada
+
+- Requerimientos básicos: `analisis/requerimientos.md`
+- Evidencias y validaciones: `evidencias/evidencias.md
