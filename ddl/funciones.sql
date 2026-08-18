@@ -11,10 +11,10 @@ create table if not exists log_stock_critico(
     stock_minimo int not null,
     procentaje_stock_actual float not null,
     fecha_deteccion datetime not null default current_timestamp,
-    estado_log enum('pendiente','resuelto') not null default 'pendiente'
+    estado_log enum('pendiente','resuelto') not null default 'pendiente',
 
     foreign key (id_sede) references sedes(id_sede) on delete cascade,
-    foreign key (id_producto) references productos(id_producto) on delete cascade
+    foreign key (id_producto) references productos(id_productos) on delete cascade
 );
 
 
@@ -29,13 +29,13 @@ reads sql data
 
 begin
 
-    declare v_total decimal(10,2) default 0.00;
     declare v_total_con_iva decimal(10,2) default 0.00;
+    declare v_total_sin_iva  decimal(10,2) default 0.00;
 
     -- obtener la suma de las subtotales
     select coalesce(sum(subtotal), 0)
     into v_total_sin_iva
-    from detalle_pedidos
+    from detalle_pedido
     where id_pedido = p_id_pedido;
 
     -- aplicar iva 12%
@@ -48,6 +48,10 @@ delimiter ;
 
 
 DELIMITER //
+
+-- *****************************************************
+-- *****************************************************
+
 
 CREATE FUNCTION fn_validar_stock(
     p_id_sede INT,
@@ -71,7 +75,7 @@ BEGIN
     INTO v_stock_actual
     FROM inventario_sede
     WHERE id_sede = p_id_sede
-      AND id_producto = p_id_producto
+      AND id_productos = p_id_producto
     LIMIT 1;
 
     -- Producto no registrado en esa sede
@@ -97,3 +101,30 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- Ver funciones
+SHOW FUNCTION STATUS
+WHERE Db = 'gaseosas_del_valle';
+
+-- Calcular total real del pedido 1
+SELECT
+    fn_calcular_total_con_iva(1) AS total_calculado;
+    
+-- Validar stock del producto 1 en la sede 1
+SELECT
+    fn_validar_stock(1, 1, 10) AS resultado_stock;
+
+
+-- Validar una cantidad superior al stock disponible
+SELECT
+    fn_validar_stock(1, 1, 1000) AS resultado_stock;
+/*
+
+select fn_calcular_total_con_iva(1) as total_con_iva;
+
+select fn_validar_stock(1, 1, 10) as resultado_stock;
+
+
+-- la primera devuelve el total con iva del pedido 1; 
+-- la segunda valida si hay stock suficiente.
+*/

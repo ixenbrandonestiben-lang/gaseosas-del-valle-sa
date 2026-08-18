@@ -18,7 +18,8 @@ create table productos(
     categoria_producto varchar(50) not null,
     precio_producto decimal(10,2) not null,
     volumen_producto_ml decimal(10,2) not null,
-    estado_producto varchar(20) not null
+    estado_producto varchar(20) not null,
+    usuario_registro varchar(60)
 );
 
 create table sedes(
@@ -34,9 +35,9 @@ create table inventario_sede(
     id_inventario int auto_increment primary key,
     id_sede int not null,
     id_productos int not null,
-    stock_actual int not null check (stock_actual >= 0),
-    stock_minimo int not null check (stock_minimo >= 0),
-    fecha_actualizacion timestamp default current_timestamp on update current_timestamp
+    stock_actual int not null check (stock_actual >= 10),
+    stock_minimo int not null check (stock_minimo >= 10),
+    fecha_actualizacion timestamp default current_timestamp on update current_timestamp,
 
     foreign key (id_sede) references sedes(id_sede),
     foreign key (id_productos) references productos(id_productos),
@@ -61,7 +62,7 @@ create table detalle_pedido(
     id_detalle_pedido int auto_increment primary key,
     id_pedido int not null,
     id_producto int not null,
-    cantidad_producto int not null check (cantidad > 0),
+    cantidad_producto int not null check (cantidad_producto > 0),
     precio_unitario decimal(10,2) not null,
     subtotal decimal(10,2) not null,
 
@@ -72,7 +73,7 @@ create table detalle_pedido(
 
 create table auditoria_precios(
 
-    id_auditoria int aoto_increment primary key,
+    id_auditoria int auto_increment primary key,
     
     id_producto int not null,
     
@@ -81,8 +82,9 @@ create table auditoria_precios(
     precio_nuevo decimal(10,2) not null,
     
     fecha_cambio datetime not null default current_timestamp,
-
+	
+    usuario_cambio varchar(60),
+    
     foreign key (id_producto) references productos(id_productos)
 
 );
-
