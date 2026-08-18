@@ -2,8 +2,8 @@ use gaseosas_del_valle;
 
 
 INSERT INTO productos
-(id_producto, nombre_producto, categoria_producto, precio_producto,
- volumen_ml, estado_producto, usuario_registro)
+(id_productos, nombre_producto, categoria_producto, precio_producto,
+ volumen_producto_ml, estado_producto, usuario_registro)
 VALUES
 (1,'Cola Clásica','Cola',5.00,355,'activo','ADMIN'),
 (2,'Cola Original','Cola',6.00,500,'activo','ADMIN'),
@@ -74,19 +74,19 @@ VALUES
  'Calzada José Milla Vidaurre, zona 6, Ciudad de Guatemala',
  5000,
  'Carlos Pérez',
- 'activo'),
+ 'activa'),
 
 (2,'Sede Zona 13',
  'Avenida Las Américas, zona 13, Ciudad de Guatemala',
  6000,
  'María Gómez',
- 'activo'),
+ 'activa'),
 
 (3,'Sede Zona 21',
  'Avenida Petapa, zona 21, Ciudad de Guatemala',
  4500,
  'Luis Hernández',
- 'activo');
+ 'activa');
 
 
 INSERT INTO clientes
@@ -151,7 +151,7 @@ VALUES
 
 
 INSERT INTO inventario_sede
-(id_inventario,id_sede,id_producto,stock_actual,stock_minimo)
+(id_inventario,id_sede,id_productos,stock_actual,stock_minimo)
 VALUES
 (1,1,1,107,23),
 (2,2,2,114,26),
@@ -212,60 +212,60 @@ VALUES
 INSERT INTO pedidos
 (id_pedido,id_cliente,id_sede,total_sin_iva,total_con_iva,estado_pedido)
 VALUES
-(1,2,1,18.00,20.16,'completado'),
-(2,3,2,41.00,45.92,'completado'),
-(3,4,3,64.00,71.68,'completado'),
-(4,5,1,92.00,103.04,'completado'),
-(5,6,2,97.00,108.64,'completado'),
-(6,7,3,39.00,43.68,'completado'),
-(7,8,1,88.00,98.56,'completado'),
-(8,9,2,96.00,107.52,'completado'),
-(9,10,3,140.00,156.80,'completado'),
-(10,11,1,49.00,54.88,'completado'),
+(1,2,1,18.00,20.16,'Entregado'),
+(2,3,2,41.00,45.92,'Cancelado'),
+(3,4,3,64.00,71.68,'Pendiente'),
+(4,5,1,92.00,103.04,'Procesado'),
+(5,6,2,97.00,108.64,'Entregado'),
+(6,7,3,39.00,43.68,'Pendiente'),
+(7,8,1,88.00,98.56,'Cancelado'),
+(8,9,2,96.00,107.52,'Procesado'),
+(9,10,3,140.00,156.80,'Entregado'),
+(10,11,1,49.00,54.88,'Pendiente'),
 
-(11,12,2,32.00,35.84,'completado'),
-(12,13,3,80.00,89.60,'completado'),
-(13,14,1,80.00,89.60,'completado'),
-(14,15,2,147.00,164.64,'completado'),
-(15,16,3,38.00,42.56,'completado'),
-(16,17,1,29.00,32.48,'completado'),
-(17,18,2,72.00,80.64,'completado'),
-(18,19,3,100.00,112.00,'completado'),
-(19,20,1,208.00,232.96,'completado'),
-(20,21,2,49.00,54.88,'completado'),
+(11,12,2,32.00,35.84,'Procesado'),
+(12,13,3,80.00,89.60,'Cancelado'),
+(13,14,1,80.00,89.60,'Entregado'),
+(14,15,2,147.00,164.64,'Procesado'),
+(15,16,3,38.00,42.56,'Pendiente'),
+(16,17,1,29.00,32.48,'Cancelado'),
+(17,18,2,72.00,80.64,'Entregado'),
+(18,19,3,100.00,112.00,'Procesado'),
+(19,20,1,208.00,232.96,'Pendiente'),
+(20,21,2,49.00,54.88,'Cancelado'),
 
-(21,22,3,43.00,48.16,'completado'),
-(22,23,1,80.00,89.60,'completado'),
-(23,24,2,120.00,134.40,'completado'),
-(24,25,3,142.00,159.04,'completado'),
-(25,26,1,54.00,60.48,'completado'),
-(26,27,2,57.00,63.84,'completado'),
-(27,28,3,88.00,98.56,'completado'),
-(28,29,1,60.00,67.20,'completado'),
-(29,30,2,164.00,183.68,'completado'),
-(30,31,3,74.00,82.88,'completado'),
+(21,22,3,43.00,48.16,'Entregado'),
+(22,23,1,80.00,89.60,'Pendiente'),
+(23,24,2,120.00,134.40,'Procesado'),
+(24,25,3,142.00,159.04,'Cancelado'),
+(25,26,1,54.00,60.48,'Entregado'),
+(26,27,2,57.00,63.84,'Procesado'),
+(27,28,3,88.00,98.56,'Pendiente'),
+(28,29,1,60.00,67.20,'Cancelado'),
+(29,30,2,164.00,183.68,'Entregado'),
+(30,31,3,74.00,82.88,'Procesado'),
 
-(31,32,1,70.00,78.40,'procesando'),
-(32,33,2,50.00,56.00,'procesando'),
-(33,34,3,72.00,80.64,'procesando'),
-(34,35,1,96.00,107.52,'procesando'),
-(35,36,2,32.00,35.84,'procesando'),
-(36,37,3,14.00,15.68,'procesando'),
-(37,38,1,34.00,38.08,'procesando'),
-(38,39,2,71.00,79.52,'procesando'),
-(39,40,3,152.00,170.24,'procesando'),
-(40,41,1,52.00,58.24,'procesando'),
+(31,32,1,70.00,78.40,'Pendiente'),
+(32,33,2,50.00,56.00,'Cancelado'),
+(33,34,3,72.00,80.64,'Entregado'),
+(34,35,1,96.00,107.52,'Procesado'),
+(35,36,2,32.00,35.84,'Pendiente'),
+(36,37,3,14.00,15.68,'Cancelado'),
+(37,38,1,34.00,38.08,'Entregado'),
+(38,39,2,71.00,79.52,'Procesado'),
+(39,40,3,152.00,170.24,'Pendiente'),
+(40,41,1,52.00,58.24,'Cancelado'),
 
-(41,42,2,60.00,67.20,'pendiente'),
-(42,43,3,84.00,94.08,'pendiente'),
-(43,44,1,108.00,120.96,'pendiente'),
-(44,45,2,84.00,94.08,'pendiente'),
-(45,46,3,42.00,47.04,'pendiente'),
-(46,47,1,54.00,60.48,'pendiente'),
-(47,48,2,72.00,80.64,'pendiente'),
-(48,49,3,54.00,60.48,'pendiente'),
-(49,50,1,72.00,80.64,'pendiente'),
-(50,1,2,33.00,36.96,'pendiente');
+(41,42,2,60.00,67.20,'Entregado'),
+(42,43,3,84.00,94.08,'Procesado'),
+(43,44,1,108.00,120.96,'Pendiente'),
+(44,45,2,84.00,94.08,'Cancelado'),
+(45,46,3,42.00,47.04,'Entregado'),
+(46,47,1,54.00,60.48,'Procesado'),
+(47,48,2,72.00,80.64,'Pendiente'),
+(48,49,3,54.00,60.48,'Cancelado'),
+(49,50,1,72.00,80.64,'Entregado'),
+(50,1,2,33.00,36.96,'Procesado');
 
 INSERT INTO detalle_pedido
 (id_detalle_pedido,id_pedido,id_producto,cantidad_producto,
