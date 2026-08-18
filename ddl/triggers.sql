@@ -1,19 +1,19 @@
 use gaseosas_del_valle;
 
-drop trigger if exists tr_actualizar_stock;
-drop trigger if exists tr_auditar_cambio_precio;
+DROP TRIGGER IF EXISTS tr_actualizar_stock;
+DROP TRIGGER IF EXISTS tr_auditar_cambio_precio;
 
-create trigger tr_actualizar_stock
-before insert on detalle_pedido
-for each row
+DELIMITER //
 
-begin
+CREATE TRIGGER tr_actualizar_stock
+BEFORE INSERT ON detalle_pedido
+FOR EACH ROW
+BEGIN
 
-    declare v_id_sede int default null;
-    declare v_stock_actual int default null;
+    DECLARE v_id_sede INT DEFAULT NULL;
+    DECLARE v_stock_actual INT DEFAULT NULL;
 
-    -- obtener la sede correspondiente al pedido
-
+    -- Obtener la sede correspondiente al pedido
     SELECT id_sede
     INTO v_id_sede
     FROM pedidos
@@ -29,15 +29,13 @@ begin
 
     END IF;
 
-
     -- Obtener el stock actual
     SELECT stock_actual
     INTO v_stock_actual
     FROM inventario_sede
     WHERE id_sede = v_id_sede
-      AND id_producto = NEW.id_producto
+      AND id_productos = NEW.id_producto
     LIMIT 1;
-
 
     -- Validar existencia del producto en la sede
     IF v_stock_actual IS NULL THEN
@@ -48,7 +46,6 @@ begin
 
     END IF;
 
-
     -- Validar stock disponible
     IF v_stock_actual < NEW.cantidad_producto THEN
 
@@ -58,16 +55,21 @@ begin
 
     END IF;
 
-
     -- Descontar inventario
     UPDATE inventario_sede
     SET stock_actual = stock_actual - NEW.cantidad_producto
     WHERE id_sede = v_id_sede
-      AND id_producto = NEW.id_producto;
+      AND id_productos = NEW.id_producto;
 
 END //
 
+
 DELIMITER ;
+
+DROP TRIGGER IF EXISTS tr_auditar_cambio_precio;
+
+DELIMITER //
+
 CREATE TRIGGER tr_auditar_cambio_precio
 AFTER UPDATE ON productos
 FOR EACH ROW
@@ -79,15 +81,13 @@ BEGIN
             id_producto,
             precio_anterior,
             precio_nuevo,
-            fecha_cambio,
-            usuario_cambio
+            fecha_cambio
         )
         VALUES (
-            NEW.id_producto,
+            NEW.id_productos,
             OLD.precio_producto,
             NEW.precio_producto,
-            CURRENT_TIMESTAMP,
-            COALESCE(NEW.usuario_registro, 'ADMIN')
+            CURRENT_TIMESTAMP
         );
 
     END IF;
@@ -95,3 +95,60 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- **********************************************************
+-- trigger
+-- **********************************************************
+
+
+-- primero consultar el inventario del producto 1 en la sede 1
+
+SELECT
+    i.id_inventario,
+    i.id_sede,
+    i.id_productos,
+    p.nombre_producto,
+    i.stock_actual,
+    i.stock_minimo
+FROM inventario_sede i
+INNER JOIN productos p
+    ON i.id_productos = p.id_productos
+WHERE i.id_sede = 1
+  AND i.id_productos = 1;
+  
+-- Ver triggers
+SHOW TRIGGERS
+FROM gaseosas_del_valle;
+
+-- **************************
+SELECT stock_actual
+FROM inventario_sede
+WHERE id_sede = 1
+  AND id_productos = 1;
+  
+-- insertar 10 unidades de un pedido existente.
+
+INSERT INTO detalle_pedido
+(id_pedido, id_producto, cantidad_producto, precio_unitario, subtotal)
+VALUES
+(1, 1, 10, 10.00, 100.00);
+
+-- comprovar que se hayan eliminado los productos
+SELECT
+    id_sede,
+    id_productos,
+    stock_actual
+FROM inventario_sede
+WHERE id_sede = 1
+  AND id_productos = 1;
+
+/*
+
+-- ejermplo de trigger.
+update productos
+set precio_producto = 14.00
+where id_productos = 1;
+
+select * from productos
+where id_productos = 1
+order by id_productos desc;*/

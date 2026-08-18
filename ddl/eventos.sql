@@ -40,7 +40,7 @@ BEGIN
         id_producto,
         stock_actual,
         stock_minimo,
-        porcentaje_stock,
+        porcentaje_stock_actual,
         fecha_deteccion,
         estado_log
     )
@@ -48,7 +48,7 @@ BEGIN
     SELECT
 
         i.id_sede,
-        i.id_producto,
+        i.id_productos,
         i.stock_actual,
         i.stock_minimo,
 
@@ -58,7 +58,7 @@ BEGIN
         ) AS porcentaje_stock,
 
         CURRENT_TIMESTAMP,
-        'detectado'
+        'pendiente'
 
     FROM inventario_sede i
 
@@ -83,3 +83,17 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- ============================================================
+-- 8. VERIFICACIÓN DEL SISTEMA DE EVENTOS
+-- ============================================================
+
+-- Verificar eventos creados
+SHOW EVENTS
+FROM gaseosas_del_valle;
+
+
+-- Verificar si el programador de eventos de MySQL está activo
+SHOW VARIABLES LIKE 'event_scheduler';
+
+

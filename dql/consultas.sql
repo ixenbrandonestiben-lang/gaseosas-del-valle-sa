@@ -173,19 +173,21 @@ order by total_ventas_con_iva desc;
 use gaseosas_del_valle;
 
 
-
-
-
--- Ver vistas
-SHOW FULL TABLES
-FROM gaseosas_del_valle
-WHERE TABLE_TYPE = 'VIEW';
-
-
--- Ver eventos
-SHOW EVENTS
-FROM gaseosas_del_valle;
-
-
 -- Ver estructura del log de stock
 DESCRIBE log_stock_critico;
+
+/*
+use gaseosas_del_valle;
+
+insert into clientes(nombre_completo_cliente, identificacion_cliente, direccion_cliente, telefono_cliente, correo_electronico_cliente, estado_cliente)
+values ('carlos pérez', '123456', 'zona 1', '555-1234', 'carlos@mail.com', 'activo');
+
+select * from clientes 
+order by id_cliente desc;*/
+
+/*select p.nombre_producto, sum(dp.cantidad_producto) as vendidos
+from detalle_pedido dp
+inner join productos p on dp.id_producto = p.id_productos
+group by p.nombre_producto
+order by vendidos desc;
+*/
