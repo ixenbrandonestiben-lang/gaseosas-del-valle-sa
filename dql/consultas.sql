@@ -1,7 +1,9 @@
+use gaseosas_del_valle;
+
 -- Consultar los productos con stock por debajo del mínimo.
 select 
     s.nombre_sede,
-    p.id_producto,
+    p.id_productos,
     p.nombre_producto,
     p.categoria_producto,
     i.stock_actual,
@@ -10,10 +12,10 @@ select
 
 from inventario_sede i
 inner join productos p
-    on i.id_producto = p.id_producto
+    on i.id_productos = p.id_productos
 inner join sedes s
     on i.id_sede = s.id_sede
-where i-stock_actual < i.stock_minimo
+where i.stock_actual < i.stock_minimo
 order by i.stock_actual asc;
 
 
@@ -34,7 +36,7 @@ order by p.fecha_pedido asc;
 -- Listar los productos más vendidos (con JOIN y GROUP BY).
 
 select
-     p.id_producto,
+	p.id_productos,
     p.nombre_producto,
     p.categoria_producto,
     sum(dp.cantidad_producto) as cantidad_total_vendida,
@@ -42,12 +44,12 @@ select
 
 from detalle_pedido dp
 inner join productos p
-    on dp.id_producto = p.id_producto
+    on dp.id_producto = p.id_productos
 inner join pedidos pe
-    on dp.id_pedido = pe-id_pedido
-where pe.estado_pedido <> 'cancelado'
+    on dp.id_pedido = pe.id_pedido
+where pe.estado_pedido <> 'Cancelado'
 group by 
-    p.id_producto,
+    p.id_productos,
     p.nombre_producto,
     p.categoria_producto
 order by cantidad_total_vendida desc;
@@ -84,11 +86,11 @@ order by nombre_completo_cliente asc;
 
 -- Consultar productos de ciertas categorías usando IN.
 select
-    id_producto,
+    id_productos,
     nombre_producto,
     categoria_producto,
     precio_producto,
-    volumen_ml,
+    volumen_producto_ml,
     estado_producto
 from productos
 where categoria_producto in
@@ -168,15 +170,10 @@ order by total_ventas_con_iva desc;
 
 
 
-
--- Ver funciones
-SHOW FUNCTION STATUS
-WHERE Db = 'gaseosas_del_valle';
+use gaseosas_del_valle;
 
 
--- Ver triggers
-SHOW TRIGGERS
-FROM gaseosas_del_valle;
+
 
 
 -- Ver vistas
@@ -192,60 +189,3 @@ FROM gaseosas_del_valle;
 
 -- Ver estructura del log de stock
 DESCRIBE log_stock_critico;
-
-
-
--- ============================================================
--- 6. VERIFICACIÓN DE FUNCIONES
--- ============================================================
-
--- Calcular total real del pedido 1
-SELECT
-    fn_calcular_total_con_iva(1) AS total_calculado;
-
-
--- Validar stock del producto 1 en la sede 1
-SELECT
-    fn_validar_stock(1, 1, 10) AS resultado_stock;
-
-
--- Validar una cantidad superior al stock disponible
-SELECT
-    fn_validar_stock(1, 1, 1000) AS resultado_stock;
-
-
--- ============================================================
--- 7. VERIFICACIÓN DE VISTAS
--- ============================================================
-
-SELECT *
-FROM vista_resumen_pedidos_por_sede;
-
-
-SELECT *
-FROM vista_productos_bajo_stock;
-
-
-SELECT *
-FROM vista_clientes_activos;
-
-
--- ============================================================
--- 8. VERIFICACIÓN DEL SISTEMA DE EVENTOS
--- ============================================================
-
--- Verificar eventos creados
-SHOW EVENTS
-FROM gaseosas_del_valle;
-
-
--- Verificar si el programador de eventos de MySQL está activo
-SHOW VARIABLES LIKE 'event_scheduler';
-
-
--- ============================================================
--- 9. VERIFICACIÓN DE TRIGGERS
--- ============================================================
-
-SHOW TRIGGERS
-FROM gaseosas_del_valle;
