@@ -82,7 +82,8 @@ create table auditoria_precios(
     precio_anterior decimal(10,2) not null,
     precio_nuevo decimal(10,2) not null,
     fecha_cambio datetime not null default current_timestamp,
-	   
+
+    
     foreign key (id_producto) references productos(id_productos)
 
 );
